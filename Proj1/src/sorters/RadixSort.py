@@ -19,6 +19,8 @@ class RadixSort(Sorter):
         for i in range(MAXLEN):
             bins = [[] for _ in range(N)]
             for item in ARR:
+                # Item / RADIX to the power i, modulus give the specific bin
+                # Moves the currently considered digit over
                 bins[math.floor((item/RADIX ** i)%N)].append(item)
             RADIX = RADIX * 10
             ARR=[]
