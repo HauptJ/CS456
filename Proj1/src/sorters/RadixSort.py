@@ -14,10 +14,10 @@ class RadixSort(Sorter):
 
     def __radix_sort(self, ARR, N, MAXLEN):
         RADIX = 1
-        for x in range(MAXLEN):
-            bins = [[] for i in range(N)]
-            for y in ARR:
-                bins[math.floor((y/RADIX ** x)%N)].append(y)
+        for i in range(MAXLEN):
+            bins = [[] for _ in range(N)]
+            for item in ARR:
+                bins[math.floor((item/RADIX ** i)%N)].append(item)
             RADIX = RADIX * 10
             ARR=[]
             for section in bins:
