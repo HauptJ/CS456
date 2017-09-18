@@ -9,8 +9,10 @@ class RadixSort(Sorter):
         super(RadixSort, self).__init__(A)
 
     def sort(self):
+        if(len(self.A) == 0): return []
         B = self.A.copy()
-        return self.__radix_sort(B, 10, 6)
+        number_digits = len(str(max(B)))
+        return self.__radix_sort(B, 10, number_digits)
 
     def __radix_sort(self, ARR, N, MAXLEN):
         RADIX = 1
