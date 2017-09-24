@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# my rules
+Proj1/sorters
+Proj1/owens*
