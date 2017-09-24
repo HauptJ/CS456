@@ -1,23 +1,17 @@
 #!/usr/bin/env python3
 import math
-from sorters.QuickSort import quick_sort
+import sys
+from sorters.QuickSort import QuickSort
 
-def bucket_sort_quick(A):
-    B = []
-    C = []
-    n = len(A)
-    for i in range(0, n-1):
-        B.append([])
-    for x in range(1, n):
-        pass
-    for i in range(0, n-1):
-        quick_sort(B[i])
-    for l in B:
-        C.append(l)
-    return C
+def bucket_sort_quick(A, N):
+    if(len(A) is 0):
+        return []
 
-A = []
-for x in range(50):
-    A.append(50 - x - 1)
-
-bucket_sort_quick(A)
+    buckets = [list() for _ in range(N)]
+    for i in A:
+        pos = (math.floor(i/2**(sys.getsizeof(i)-N)))
+        buckets[pos].append(i)
+    ret = []
+    for buck in buckets:
+        ret += (QuickSort(buck)).sort()
+    return ret
