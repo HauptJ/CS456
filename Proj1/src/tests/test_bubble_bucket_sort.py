@@ -4,14 +4,16 @@ sys.path.append("..")
 
 from unittest import TestCase
 
-from BucketSort_BubbleSort import bucket_sort_bubble
+from sorters.BucketSort import bucket_sort
+from sorters.BubbleSort import BubbleSort
+
 
 class TestBubbleSort(TestCase):
 
     def test_it_sorts_an_empty_array(self):
         # given an empty array
         A = []
-        C = bucket_sort_bubble(A, 10)
+        C = bucket_sort(BubbleSort, A, 10)
         # and check if the array is sorted
         self.assertEqual(C, A)
 
@@ -19,15 +21,15 @@ class TestBubbleSort(TestCase):
         # given an unsorted array
         A = [9, 5, 0, 2, 3, 15, 35]
         # and a bubble sort instance
-        C = bucket_sort_bubble(A, len(A))
+        C = bucket_sort(BubbleSort, A, len(A))
         # and check if the array is sorted
         self.assertEqual(C, sorted(A))
 
     def test_it_sorts_an_reverse_sorted_array(self):
         # given a reverse sorted array
-        A = [ 35, 15, 9, 5, 3, 2, 0]
+        A = [35, 15, 9, 5, 3, 2, 0]
         # and a bubble sort instance
-        C = bucket_sort_bubble(A, len(A))
+        C = bucket_sort(BubbleSort, A, len(A))
         # and check if the array is sorted
         self.assertEqual(C, sorted(A))
 
@@ -35,6 +37,14 @@ class TestBubbleSort(TestCase):
         # given an unsorted array
         A = [9, 5, 0, 2, 3, 15, 35, 9]
         # and a bubble sort instance
-        C = bucket_sort_bubble(A, len(A))
+        C = bucket_sort(BubbleSort, A, len(A))
+        # and check if the array is sorted
+        self.assertEqual(C, sorted(A))
+
+    def test_it_sorts_an_unsorted_array_with_duplicates_and_N_is_not_full_length(self):
+        # given an unsorted array
+        A = [9, 5, 0, 2, 3, 15, 35, 9]
+        # and a bubble sort instance
+        C = bucket_sort(BubbleSort, A, int(len(A) / 2))
         # and check if the array is sorted
         self.assertEqual(C, sorted(A))

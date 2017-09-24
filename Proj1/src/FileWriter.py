@@ -40,17 +40,18 @@ class FileWriter(object):
 
     def set_file_out(self, out):
         self.string_io = out
+        return self
 
     def write(self):
         if self.string_io is not None:
             self.string_io.write("Sort Size: " + str(self.sort_size) + "\n")
             self.string_io.write("Number of Buckets: " + str(self.buckets) + "\n")
             if self.bubble_sort is not None:
-                self.string_io.write("Bubble Sort: " + str(self.bubble_sort) + "s\n")
+                self.string_io.write("Bubble Sort: " + format(self.bubble_sort, '0.7f') + "s\n")
             if self.quick_sort is not None:
-                self.string_io.write("Quick Sort: " + str(self.quick_sort) + "s\n")
+                self.string_io.write("Quick Sort: " + format(self.quick_sort, '0.7f') + "s\n")
             if self.radix_sort is not None:
-                self.string_io.write("Radix Sort: " + str(self.radix_sort) + "s\n")
+                self.string_io.write("Radix Sort: " + format(self.radix_sort, '0.7f') + "s\n")
             for i in self.arr:
                 self.string_io.write(str(i) + "\n")
         else:
@@ -58,11 +59,11 @@ class FileWriter(object):
                 f.write("Sort Size: " + str(self.sort_size) + "\n")
                 f.write("Number of Buckets: " + str(self.buckets) + "\n")
                 if self.bubble_sort is not None:
-                    f.write("Bubble Sort: " + str(self.bubble_sort) + "s\n")
+                    f.write("Bubble Sort: " + format(self.bubble_sort, '0.7f') + "s\n")
                 if self.quick_sort is not None:
-                    f.write("Quick Sort: " + str(self.quick_sort) + "s\n")
+                    f.write("Quick Sort: " + format(self.quick_sort, '0.7f') + "s\n")
                 if self.radix_sort is not None:
-                    f.write("Radix Sort: " + str(self.radix_sort) + "s\n")
+                    f.write("Radix Sort: " + format(self.radix_sort, '0.7f') + "s\n")
                 for i in self.arr:
                     f.write(str(i) + "\n")
                 f.close()

@@ -2,6 +2,8 @@
 import os
 import time
 import sys
+from sorters.BubbleSort import BubbleSort
+from sorters.RadixSort import RadixSort
 from sorters.QuickSort import QuickSort
 from sorters.BucketSort import bucket_sort
 from FileImporter import FileImporter
@@ -31,6 +33,23 @@ if __name__ == '__main__':
         end_times.append(time.clock())
 
     quick_sort_time = sum(end_times) - sum(start_times)
+    start_times = []
+    end_times = []
+    for _ in range(3):
+        start_times.append(time.clock())
+        ret = bucket_sort(BubbleSort, arr, bucket_size)
+        end_times.append(time.clock())
+
+    bubble_sort_time = sum(end_times) - sum(start_times)
+    start_times = []
+    end_times = []
+    for _ in range(3):
+        start_times.append(time.clock())
+        ret = bucket_sort(RadixSort, arr, bucket_size)
+        end_times.append(time.clock())
+
+    radix_sort_time = sum(end_times) - sum(start_times)
     fw = fw.set_number_buckets(bucket_size).set_sort_size(
         len(ret)).set_quick_sort_time(quick_sort_time)
-    fw.set_out_array(ret).write()
+    fw.set_bubble_sort_time(bubble_sort_time).set_radix_sort_time(
+        radix_sort_time).set_out_array(ret).write()

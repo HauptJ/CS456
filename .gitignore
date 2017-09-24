@@ -103,3 +103,5 @@ ENV/
 # my rules
 Proj1/sorters
 Proj1/owens*
+Proj1/*.py
+owens*.txt
