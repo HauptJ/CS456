@@ -5,8 +5,10 @@ def bucket_sort(sorter, A, N):
         return []
 
     buckets = [list() for _ in range(N)]
+    bucket_size = len(A) / N
+    min_value = min(A)
     for i in A:
-        pos = (math.floor(i/2**(sys.getsizeof(i)-N)))
+        pos = math.floor((i - min_value) / bucket_size)
         buckets[pos].append(i)
     ret = []
     for buck in buckets:

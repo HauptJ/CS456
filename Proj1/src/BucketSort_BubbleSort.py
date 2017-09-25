@@ -31,6 +31,7 @@ if __name__ == '__main__':
         end_times.append(time.clock())
 
     bubble_sort_time = sum(end_times) - sum(start_times)
+
     fw = fw.set_number_buckets(bucket_size).set_sort_size(
         len(ret)).set_bubble_sort_time(bubble_sort_time)
     fw.set_out_array(ret).write()

@@ -8,22 +8,20 @@ class RadixSort(Sorter):
     def __init__(self, A):
         super(RadixSort, self).__init__(A)
 
+# found on the Python Mailing list
+# https://mail.python.org/pipermail/python-list/2001-February/094832.html
+# slightly modified for my purposes
     def sort(self):
         if(len(self.A) == 0): return []
         B = self.A.copy()
-        number_digits = len(str(max(B)))
-        return self.__radix_sort(B, 10, number_digits)
-
-    def __radix_sort(self, ARR, N, MAXLEN):
-        RADIX = 1
-        for i in range(MAXLEN):
+        N = 10
+        maxLen = len(str(max(B)))
+        # maxLen = 6
+        for i in range(maxLen):
             bins = [[] for _ in range(N)]
-            for item in ARR:
-                # Item / RADIX to the power i, modulus give the specific bin
-                # Moves the currently considered digit over
-                bins[math.floor((item/RADIX ** i)%N)].append(item)
-            RADIX = RADIX * 10
-            ARR=[]
+            for item in B:
+                bins[math.floor((item/10**i)%N)].append(item)
+            B=[]
             for section in bins:
-                ARR.extend(section)
-        return ARR
+                B.extend(section)
+        return B
