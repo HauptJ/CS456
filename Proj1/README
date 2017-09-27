@@ -5,3 +5,5 @@
 # Clean up
 make clean will remove executables and extra sources.
 make clean-all will remove executables, extra sources, and text output files
+
+The Report located at Documentation/report.pdf
