@@ -11,6 +11,8 @@
 \author{Ryan Owens}
 \title{Programming Assignment 01 Report}
 \begin{document}
+	Ryan Owens
+	\\* Programming Assignment 01 Report
 \paragraph{introduction}
 	Programming assignment 01's purpose is to reinforce algorithm assessment techniques learned in the classroom.  The goal is to implement some sorting algorithms and perform runtime analysis, correctness proofs, and experiment with the given algorithms. In order to properly proof the correctness of the algorithms, invariant proofs will be used. 
 \paragraph{Bubble sort pseudo code and invariant proof}
@@ -127,7 +129,67 @@ BucketSort(A, N):
 	return result
 \end{lstlisting}
 
+
 \paragraph{Testing Plan}
-	My testing plan is to provide each of the sorting algorithms an unsorted random array of a large size to determine when they start to exhibit asymptotic growth while confirming the sorting algorithms correctness using smaller empty and reverse sorted arrays. Testing of the large data sets will also coincide with changing the bucket size from that equal to a tenth of the smallest data set all the way up to the size of the smallest data set. 
+My testing plan is to provide each of the sorting algorithms an unsorted random array of a large size to determine when they start to exhibit asymptotic growth while confirming the sorting algorithms correctness using smaller empty and reverse sorted arrays. Testing of the large data sets will also coincide with changing the bucket size from that equal to a tenth of the smallest data set all the way up to the size of the smallest data set. I am starting with data set size 1000 and moving up to data set size 1,000,000. At data set size 10, 000, 000 bubble sort approaches 3 day sorting times and waiting for the results does not affect this report. I will include 5 figures, shown bellow, which compare sorting time with bucket sort bucket count and sorting time compared with data set size given a fixed bucket sort bucket count. 
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{bucket_size_10000_data_set_size_vs_time}
+	\caption[Sorting times for bucket size 10000]{Sorting times for bucket size 10000}
+	\label{fig:Sorting times with bucket size 10000}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{bucket_size_1000_data_set_size_vs_time}
+	\caption[Sorting times for bucket size 1000]{Sorting times for bucket size 1000}
+	\label{fig: Sorting times for bucket size 1000}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fixed_size_100000_bucket_size_vs_time}
+	\caption[Sorting times for data set size 100000]{Sorting times for data set size 100000}
+	\label{fig:Sorting times for data set size 100000}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fixed_size_10000_bucket_size_vs_time}
+	\caption[Sorting times for data set size 10000]{Sorting times for data set size 10000}
+	\label{fig:fixedsize10000bucketsizevstime}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fixed_size_100_bucket_size_vs_time}
+	\caption[Sorting times for data set size 100]{Sorting times for data set size 100}
+	\label{fig:fixedsize100bucketsizevstime}
+\end{figure}
+
+\pagebreak
+\paragraph{Correctness Proof}
+	proofs
+	
+\paragraph{Encountered problems and Key Insights}
+The biggest problem I ran into with this project was memory usage. In order to ensure my implementations of the sorting algorithms do not conflict with each other as well as to remove the requirement
+of reading from the file each time I start the next sorting implementation I decided to make a full copy of the input array in each sorting algorithm class. While this may not have been strictly necessary I wanted to be absolutely sure each algorithm was operating uniquely. However, because of the full duplication of each array, my programs used up twice the amount of memory as would normally be used.  I feel justified in duplicating the array for consistency purposes. I learned to also run the bubble sort algorithms in separate threads in order to allow the quick and radix sorts to finish. 
+
+\paragraph{Justification and conclusion}
+Sorting algorithms act differently based on input and implementation. My implementation of Bubble sort shows a best case of O(n) given an array that is already sorted. This is because I am checking for swapping at the end of each iteration. On an average case, given a small data set, my Bubble sort has a run time of O(n) (see \ref{fig:fixedsize100bucketsizevstime}, \ref{fig:fixedsize10000bucketsizevstime} and \ref{fig:Sorting times with bucket size 10000}). On the medium and large data sets my Bubble sort continues to demonstrate an average runtime of O($n^2$) (see \ref{fig: Sorting times for bucket size 1000} and \ref{fig:Sorting times with bucket size 10000}). Unfortunately, given a worst case scenario where the input is in a reverse sorted order, my Bubble sort will run in O($n^2$) as it will have to swap during each iteration. 
+
+My implementation of Quick sort has a best case runtime of O(n) similar to Bubble sort.  For the average case, my Quick sort has a runtime of O(nlogn) (see \ref{fig:fixedsize100bucketsizevstime}).
+The worst case runtime for my Quick sort will be O(n). 
+
+Finally, my Radix sort has a best-case runtime of O(wn) when the length of all keys is the same. However, because the length of the keys is usually not same, the average and worst-case runtime of my Radix sort is O(nlogn).
+
+When comparing the sorting time with bucket size, I found that the bucket size should be as close to n (data set size) in order to get the best sorting time. This would allow the bucket sort to place one item in each bucket and sort individually. When the bucket size is a tenth of n or less the sorting time became O(n$^2$) or worse. (see \ref{fig:fixedsize100bucketsizevstime}, \ref{fig:fixedsize10000bucketsizevstime} and \ref{fig:Sorting times for data set size 100000}).
+
+	
 \end{document}
 

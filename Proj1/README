@@ -1,0 +1,7 @@
+# How to run
+1. run Make
+2. run the executable
+
+# Clean up
+make clean will remove executables and extra sources.
+make clean-all will remove executables, extra sources, and text output files

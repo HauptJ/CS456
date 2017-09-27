@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from sorters.Sorter import Sorter
 
+
 class BubbleSort(Sorter):
     """docstring for BubbleSort."""
+
     def __init__(self, A):
         super(BubbleSort, self).__init__(A)
 
