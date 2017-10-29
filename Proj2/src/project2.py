@@ -9,21 +9,21 @@ from ConvexHull.GrahamScan import GrahamScan
 from ConvexHull.JarvisMarch import JarvisMarch
 
 
-def graham_scan_thread(points):
+def graham_scan(points):
     start_time = time.clock()
     hull = (GrahamScan(points.copy())).calculate()
     end_time = time.clock()
     return (hull, end_time - start_time)
 
 
-def jarvis_march_thread(points):
+def jarvis_march(points):
     start_time = time.clock()
     hull = (JarvisMarch(points.copy())).calculate()
     end_time = time.clock()
     return (hull, end_time - start_time)
 
 
-def quick_hull_thread(points):
+def quick_hull(points):
     start_time = time.clock()
     hull = (QuickHull(points.copy())).calculate()
     end_time = time.clock()
@@ -43,13 +43,13 @@ if __name__ == '__main__':
     pool = ThreadPool(processes=3)
     # get quick hull time
     print("Starting QuickHull")
-    quick_hull_results = quick_hull_thread(points)
+    quick_hull_results = quick_hull(points)
     # get jarvis march time
     print("Starting JarvisMarch")
-    jarvis_march_results = jarvis_march_thread(points)
+    jarvis_march_results = jarvis_march(points)
     # get quick hull time
     print("Starting GrahamScan")
-    graham_scan_results = graham_scan_thread(points)
+    graham_scan_results = graham_scan(points)
     # set the output file name
     out_filename = str(count_point) + ".txt"
     # get a file writer
