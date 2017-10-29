@@ -2,6 +2,7 @@
 import sys
 from FileIO.FileImporter import FileImporter
 from ConvexHull.GrahamScan import GrahamScan
+from ConvexHull.JarvisMarch import JarvisMarch
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -12,3 +13,5 @@ if __name__ == '__main__':
     points = (FileImporter(filename)).get_array()
     # calculate graham scan convex hull
     print((GrahamScan(points.copy())).calculate())
+    # calculate jarvis march convex hull
+    print((JarvisMarch(points.copy())).calculate())
