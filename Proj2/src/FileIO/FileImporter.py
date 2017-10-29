@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+
 class FileImporter(object):
     """Reads an array of X,Y points from filename."""
+
     def __init__(self, filename):
         super(FileImporter, self).__init__()
         self.__filename = filename

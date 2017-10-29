@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 import sys
 
+
 class GrahamScan(object):
-    """Find the convex hull given an array of X,Y points"""
+    """Find the convex hull given an array of X,Y points using Graham Scan"""
 
     def __init__(self, points):
         super(GrahamScan, self).__init__()
         self.__points = points
 
     def calculate(self):
+        if len(self.__points) < 4:
+            return self.__points
+
         points = self.__points.copy()
         sorted_by_y = sorted(points, key=lambda point: point[1])
         p0 = sorted_by_y.pop(0)
@@ -30,13 +34,13 @@ class GrahamScan(object):
 
     def top(self, S):
         if len(S) > 0:
-            return S[len(S) - 1]
+            return S[-1]
         else:
             return None
 
     def next_to_top(self, S):
         if len(S) > 1:
-            return S[len(S) - 2]
+            return S[-2]
         else:
             return None
 
