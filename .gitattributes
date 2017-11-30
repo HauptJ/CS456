@@ -1,0 +1,2 @@
+Proj2/Documentation/project_2_report.odt filter=lfs diff=lfs merge=lfs -text
+Proj2/Documentation/project_2_report.ods filter=lfs diff=lfs merge=lfs -text

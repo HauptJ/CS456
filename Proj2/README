@@ -1,0 +1,5 @@
+# Project 2
+
+## Running
+
+The included makefile will copy the source files into the proper locations as well as generate a project2 executable. 
