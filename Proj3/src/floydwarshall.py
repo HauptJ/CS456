@@ -14,11 +14,8 @@ def print_path(path):
     for i in range(1, len(path)):
         p = p + " -> " + str(path[i]['name'])
     print(p)
-    print("Number of points in the path is: " +str(len(path)))
+    print("Number of points in the path is: " + str(len(path)))
     print("The Total cost is: " + str(cost))
-
-
-
 
 
 if __name__ == '__main__':

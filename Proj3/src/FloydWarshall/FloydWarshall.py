@@ -2,6 +2,7 @@
 from Graph.Graph import Graph
 import sys
 
+
 class FloydWarshall(object):
     """docstring for FloydWarshall."""
 
@@ -50,5 +51,6 @@ class FloydWarshall(object):
             for i in range(num_vertices):
                 for j in range(num_vertices):
                     if self.__dist[i][j] > self.__dist[i][k] + self.__dist[k][j]:
-                        self.__dist[i][j] = self.__dist[i][k] + self.__dist[k][j]
+                        self.__dist[i][j] = self.__dist[i][k] + \
+                            self.__dist[k][j]
                         self.__next[i][j] = self.__next[i][k]
