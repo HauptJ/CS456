@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 import math
 
+
 class Graph(object):
     """docstring for Graph."""
 
     def __init__(self):
         super(Graph, self).__init__()
         self.__graph = {}
+        self.__num_edges = 0
+        self.__num_vertices = 0
 
     def __str__(self):
         string = ""
@@ -14,8 +17,10 @@ class Graph(object):
         for node in self.__graph.items():
             name = str(node[0])
             string = string + "\tName: " + name
-            string = string + "\n\tVertex: ( " + str(node[1]['vertex']['X'])
-            string = string + " , " + str(node[1]['vertex']['X']) + " )"
+            if node[1]['vertex'] is not None:
+                string = string + \
+                    "\n\tVertex: ( " + str(node[1]['vertex']['X'])
+                string = string + " , " + str(node[1]['vertex']['Y']) + " )"
             string = string + "\n\tValue: " + str(node[1]['value'])
             string = string + "\n\tEdges: \n"
             if len(node[1]['edges']) is 0:
@@ -26,20 +31,46 @@ class Graph(object):
                 string = string + " Weight: " + str(node[1]['edges'].get(key))
                 string = string + "\n"
             string = string + "\n"
-        return string
+        return str(list(self.__graph))
+
+    def __getitem__(self, key):
+        if key is None:
+            raise Exception("Key is None")
+        if key < 0 or key >= self.__num_vertices:
+            raise IndexError("Index %s is not in the graph" % index)
+        return self.__graph.get(list(self.__graph)[key])
+
+    def get_edges(self):
+        edges = []
+        for key in self.__graph.keys():
+            vertex = self.__graph.get(key)
+            for key in vertex['edges'].keys():
+                edges.append((vertex['name'], key, vertex['edges'].get(key)))
+        return edges
+
+    def get_index_of_node(self, name):
+        if name not in self.__graph.keys():
+            raise IndexError("Node %s is not in the graph" % name)
+        return list(self.__graph).index(name)
 
     def has_node(self, name):
         return name in self.__graph
 
     def add_node(self, name, vertex):
-        self.__graph[name] = {'name': name, 'vertex': vertex, 'value': None, 'edges': {}}
+        self.__graph[name] = {'name': name,
+                              'vertex': vertex, 'value': None, 'edges': {}}
+        self.__num_vertices = self.__num_vertices + 1
 
     def size(self):
-        return len(self.__graph)
+        return self.__num_vertices
+
+    def num_edges(self):
+        return self.__num_edges
 
     def add_edge(self, source, destination, weight):
         self.__graph[source]['edges'][destination] = weight
         self.__graph[destination]['edges'][source] = weight
+        self.__num_edges = self.__num_edges + 1
 
     def has_edge(self, source, destination):
         if source not in self.__graph.keys():
