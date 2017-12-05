@@ -3,6 +3,7 @@ from PriorityQueue.PriorityQueue import PriorityQueue
 from Graph.Graph import Graph
 import sys
 
+
 class AStar(object):
     """docstring for AStar."""
 
@@ -26,24 +27,6 @@ class AStar(object):
         dest = self.__graph.get_node(destination)
         path = {}
         while True:
-            # current = discovered.get()[1]
-            # print("Current: " + str(current))
-            # print("\tCurrent Heuristic Cost: " + str(heuristic_costs[current['name']]))
-            # if current is dest:
-            #     break
-            #
-            # neighbors = self.__graph.get_neighbors_of(current)
-            # for neighbor in neighbors:
-            #     if neighbor in explored:
-            #         continue
-            #     costs[neighbor['name']] = costs[current['name']] + int(current['edges'][neighbor['name']])
-            #     heuristic_costs[neighbor['name']] = costs[neighbor['name']] + neighbor['value']
-            #
-            #     if (heuristic_costs[neighbor['name']], neighbor) in discovered:
-            #         discovered.remove((heuristic_costs[neighbor['name']], neighbor))
-            #     discovered.put((heuristic_costs[neighbor['name']], neighbor))
-            #
-            # explored.append(current)
             current = discovered.get()[1]
 
             if current['name'] == dest['name']:
@@ -54,16 +37,18 @@ class AStar(object):
             for neighbor in self.__graph.get_neighbors_of(current):
                 if neighbor in explored:
                     continue
-                cost = costs[current['name']] + int(current['edges'][neighbor['name']])
+                cost = costs[current['name']] + \
+                    int(current['edges'][neighbor['name']])
                 heuristic_cost = cost + neighbor['value']
 
                 if (heuristic_cost, neighbor) not in discovered:
                     discovered.put((heuristic_cost, neighbor))
 
-                if neighbor['name'] in costs and  cost >= costs[neighbor['name']]:
+                if neighbor['name'] in costs and cost >= costs[neighbor['name']]:
                     continue
 
-                path[neighbor['name']] = {'from': current['name'], 'cost': cost}
+                path[neighbor['name']] = {
+                    'from': current['name'], 'cost': cost}
                 costs[neighbor['name']] = cost
                 heuristic_costs[neighbor['name']] = heuristic_costs
 
